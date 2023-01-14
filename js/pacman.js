@@ -106,6 +106,7 @@ class Pacman{
         return false;
     }
 
+    //方向転換が可能かを確認し、制御
     changeDirectionIfPossible() {
         if (this.direction == this.nextDirection) return;
         let tempDirection = this.direction;
