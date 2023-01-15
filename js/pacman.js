@@ -1,6 +1,6 @@
-class Pacman{
+class Pacman {
     constructor(x, y, width, height, speed) {
-        this.x =x;
+        this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
@@ -16,7 +16,7 @@ class Pacman{
 
     moveProcess() {
         this.changeDirectionIfPossible();
-        this.MoveForwards();
+        this.moveForwards();
         if (this.checkCollisions()) {
             this.moveBackwards();
             return;
@@ -24,13 +24,13 @@ class Pacman{
     }
 
     eat() {
-        for (let i = 0; i < map.length; i++){
-            for (let j = 0; j < map[0].length; j++){
+        for (let i = 0; i < map.length; i++) {
+            for (let j = 0; j < map[0].length; j++) {
                 if (
                     map[i][j] == 2 &&
                     this.getMapX() == j &&
                     this.getMapY() == i
-                ){
+                ) {
                     map[i][j] = 3;
                     score++;
                 }
@@ -40,16 +40,16 @@ class Pacman{
 
     moveBackwards() {
         switch (this.direction) {
-            case DIRECTION_RIGHT: //右
+            case DIRECTION_RIGHT: // 右
                 this.x -= this.speed;
                 break;
-            case DIRECTION_UP: //上
+            case DIRECTION_UP: // 上
                 this.y += this.speed;
                 break;
-            case DIRECTION_LEFT: //左
+            case DIRECTION_LEFT: // 左
                 this.x += this.speed;
                 break;
-            case DIRECTION_BOTTOM: //下
+            case DIRECTION_BOTTOM: // 下
                 this.y -= this.speed;
                 break;
         }
@@ -93,20 +93,19 @@ class Pacman{
         return isCollided;
     }
 
-    checkGhostCollistion(ghosts) {
+    checkGhostCollision(ghosts) {
         for (let i = 0; i < ghosts.length; i++) {
             let ghost = ghosts[i];
             if (
                 ghost.getMapX() == this.getMapX() &&
                 ghost.getMapY() == this.getMapY()
-            ){
+            ) {
                 return true;
             }
         }
         return false;
     }
 
-    //方向転換が可能かを確認し、制御
     changeDirectionIfPossible() {
         if (this.direction == this.nextDirection) return;
         let tempDirection = this.direction;
@@ -127,6 +126,7 @@ class Pacman{
 
     getMapY() {
         let mapY = parseInt(this.y / oneBlockSize);
+
         return mapY;
     }
 
@@ -141,7 +141,7 @@ class Pacman{
     }
 
     changeAnimation() {
-        this.currentFrame = 
+        this.currentFrame =
             this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
     }
 
